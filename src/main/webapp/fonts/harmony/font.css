@@ -1,0 +1,18 @@
+@font-face {
+  font-family: 'HDharmonyL';
+  src: url('HDharmonyL.svg#HDharmonyL') format('svg'),
+       url('HDharmonyL.ttf') format('truetype'),
+       url('HDharmonyL.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: '현대하모니+L';
+  src: url('현대하모니+L.eot');
+  src: url('현대하모니+L.eot?#iefix') format('embedded-opentype'),
+       url('현대하모니+L.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+

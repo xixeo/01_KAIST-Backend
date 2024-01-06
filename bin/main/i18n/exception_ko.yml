@@ -1,0 +1,48 @@
+unKnown:
+  code: "-9999"
+  msg: "알수 없는 오류가 발생하였습니다."
+# login error 
+userNotFound:
+  code: "-1000"
+  msg: "존재하지 않는 회원입니다."
+emailSigninFailed:
+  code: "-1001"
+  msg: "계정이 존재하지 않거나 비밀번호가 정확하지 않습니다."
+entryPointException:
+  code: "-1002"
+  msg: "세션이 만료되었거나, 해당 리소스에 접근하기 위한 권한이 없습니다."
+accessDenied:
+  code: "-1003"
+  msg: "보유한 권한으로 접근할수 없는 리소스 입니다."
+communicationError:
+  code: "-1004"
+  msg: "통신 중 오류가 발생하였습니다."
+existingUser:
+  code: "-1005"
+  msg: "이미 가입한 회원입니다. 로그인을 해주십시오."
+# token error
+invaildRefreshToken:
+  code: "-1100"
+  msg: "Refresh Token의 정보가 일치하지 않습니다."   
+# sql error 
+noResultFound:
+  code: "-2000"
+  msg: "조회결과가 없습니다."
+codeDuplicateError:
+  code: "-2001"
+  msg: "코드값이 중복되었습니다. 코드값을 확인해 주세요."  
+dataDuplicateError:
+  code: "-2002"
+  msg: "데이터 제약조건위반 오류입니다. "
+dbConnectError:
+  code: "-2003"
+  msg: "데이터베이스 연결오류입니다."
+deadlockError:
+  code: "-2004"
+  msg: "교착 상태로 인해 작업이 실패하였습니다."
+badSqlGrmmar:
+  code: "-2005"
+  msg: "SQL문법오류입니다. "
+invaildResult:
+  code: "-2006"
+  msg: "부적합한/잘못된 열. "

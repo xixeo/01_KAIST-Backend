@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="kr.co.igns.framework.comm.dao.postgre.AuthDao">
+        
+	<!-- 권한그룹 검색 조건   -->    
+    <sql id="searchGrp">
+    	<if test='domainCd != null and !domainCd.equals("")'>
+			AND A.DOMAIN_CD = #{domainCd}
+		</if>
+		<if test='authgrpCd != null and !authgrpCd.equals("")'>
+			AND A.authgrp_cd = #{authgrpCd}
+		</if>
+		<if test='authgrpNm != null and !authgrpNm.equals("")'>
+			AND A.authgrp_nm = #{authgrpNm}
+		</if>
+	</sql>
+	        
+    <!-- 권한그룹 전체 조회 -->
+    <select id="getAuthGroup" parameterType="kr.co.igns.framework.comm.model.AuthReqDto" 
+    					resultType="kr.co.igns.framework.comm.model.AuthVO">
+        select a.*, b.domain_nm, c.code_nm as authgrp_type_nm
+		from tb_auth_grp a
+			inner join tb_domain_info b on a.domain_cd = b.domain_cd
+			left join tb_common_code c on a.authgrp_type = c.code_cd and a.domain_cd = c.domain_cd
+		where 1=1
+			<include refid="searchGrp" />
+		order by a.domain_cd, a.authgrp_cd
+    </select>
+    
+    <insert id="createAuthGroup" parameterType="kr.co.igns.framework.comm.model.AuthVO">
+    	INSERT INTO tb_auth_grp
+			(DOMAIN_CD
+			, AUTHGRP_CD
+			, AUTHGRP_NM
+			, AUTHGRP_TYPE
+			, USE_YN
+			, insert_id
+			, insert_dt
+			)
+		VALUES(
+			#{domainCd}
+			, #{authgrpCd}
+			, #{authgrpNm}
+			, #{authgrpType}
+			, #{useYn}
+			, #{insertId}
+			, NOW()
+			)
+    </insert>
+    
+    <update id="updateAuthGroup" parameterType="kr.co.igns.framework.comm.model.AuthVO">
+    	update tb_auth_grp
+			set AUTHGRP_NM 		= #{authgrpNm}
+				,AUTHGRP_TYPE	= #{authgrpType}
+				,USE_YN			= #{useYn}
+				,update_id		= #{updateId}
+				,update_dt		= NOW()
+			where DOMAIN_CD 	= #{domainCd}
+			  and AUTHGRP_CD 	= #{authgrpCd} 
+    </update>
+    
+    <delete id="deleteAuthGroup" parameterType="kr.co.igns.framework.comm.model.AuthVO">
+    	delete from tb_auth_grp 
+    	where domain_cd = #{domainCd} 
+		  and AUTHGRP_CD = #{authgrpCd}
+    </delete>
+    
+    
+    
+    
+    
+    <!-- 권한유저 검색 조건   -->    
+    <sql id="searchGrpUser">
+		<if test='authgrpCd != null and !authgrpCd.equals("")'>
+			AND A.authgrp_cd = #{authgrpCd}
+		</if>
+		<if test='userId != null and !userId.equals("")'>
+			AND A.user_id = #{userId}
+		</if>
+		<if test='authgrpAsgCls != null and !authgrpAsgCls.equals("")'>
+			AND A.authgrp_asg_cls = #{authgrpAsgCls}
+		</if>
+	</sql>
+	        
+    <!-- 권한유저 전체 조회 -->
+    <select id="getUserAuthGroup" parameterType="kr.co.igns.framework.comm.model.AuthReqDto" 
+    					resultType="kr.co.igns.framework.comm.model.AuthUserVO">
+      select a.*, case when b.user_nm is null then c.asgn_nm
+        			   when c.asgn_nm is null then b.user_nm end as user_nm
+		from TB_USER_AUTH_GRP a
+			 left join tb_user_info b on a.user_id = b.user_id and a.domain_cd = b.domain_cd
+			 left join tb_asgn_info c on a.user_id = c.asgn_cd and a.domain_cd = c.domain_cd
+	   where a.DOMAIN_CD = #{domainCd}
+			<include refid="searchGrpUser" />
+    </select>
+    
+    <insert id="createUserAuthGroup" parameterType="kr.co.igns.framework.comm.model.AuthUserVO">
+    	INSERT INTO TB_USER_AUTH_GRP
+			(DOMAIN_CD
+			, AUTHGRP_CD
+			, USER_ID
+			, AUTHGRP_ASG_CLS
+			, insert_id
+			, insert_dt
+			)
+		VALUES(
+			#{domainCd}
+			, #{authgrpCd}
+			, #{userId}
+			, #{authgrpAsgCls}
+			, #{insertId}
+			, NOW()
+			)
+    </insert>
+    
+    <update id="updateUserAuthGroup" parameterType="kr.co.igns.framework.comm.model.AuthUserVO">
+    	update TB_USER_AUTH_GRP
+			set USER_ID 			= #{userId}
+				,AUTHGRP_ASG_CLS	= #{authgrpAsgCls}
+				,update_id			= #{updateId}
+				,update_dt			= NOW()
+			where DOMAIN_CD 	= #{domainCd}
+			  and AUTHGRP_CD 	= #{authgrpCd} 
+    </update>
+    
+    
+    <delete id="deleteUserAuthGroup" parameterType="kr.co.igns.framework.comm.model.AuthUserVO">
+    	delete from TB_USER_AUTH_GRP 
+    	where domain_cd 	= #{domainCd} 
+		  and AUTHGRP_CD 	= #{authgrpCd}
+		  and USER_ID 		= #{userId}
+    </delete>
+    
+    
+    
+    <!-- 권한메뉴 검색 조건   -->    
+    <sql id="searchGrpMenu">
+    	<if test='domainCd != null and !domainCd.equals("")'>
+			AND A.DOMAIN_CD = #{domainCd}
+		</if>
+		<if test='authgrpCd != null and !authgrpCd.equals("")'>
+			AND A.AUTHGRP_CD = #{authgrpCd}
+		</if>
+		<if test='authgrpNm != null and !authgrpNm.equals("")'>
+			AND B.AUTHGRP_NM = #{authgrpNm}
+		</if>
+	</sql>
+
+    <!-- 권한메뉴 전체 조회 -->
+    <select id="getMenuAuthGroup" parameterType="kr.co.igns.framework.comm.model.AuthReqDto" 
+    					resultType="kr.co.igns.framework.comm.model.AuthMenuVO">
+        select a.*, b.authgrp_nm , b.authgrp_type, d.menu_nm, d.menu_url     
+		from TB_MENU_AUTH_GRP a
+			inner join tb_auth_grp b on a.authgrp_cd = b.authgrp_cd and a.domain_cd = b.domain_cd
+			left join tb_menu_info d on a.menu_cd = d.menu_cd and a.domain_cd = d.domain_cd and d.use_yn = 'Y'
+		where 1=1 
+		  <include refid="searchGrpMenu" />
+    </select>
+    
+    <insert id="createMenuAuthGroup" parameterType="kr.co.igns.framework.comm.model.AuthMenuVO">
+    	INSERT INTO TB_MENU_AUTH_GRP
+			(DOMAIN_CD
+			, MENU_CD
+			, AUTHGRP_CD
+			, BASIC_ACLC
+			, BASIC_ACLR
+			, BASIC_ACLU
+			, BASIC_ACLD
+			, insert_id
+			, insert_dt
+			)
+		VALUES(
+			#{domainCd}
+			, #{menuCd}
+			, #{authgrpCd}
+			, #{basicAclc}
+			, #{basicAclr}
+			, #{basicAclu}
+			, #{basicAcld}
+			, #{insertId}
+			, NOW()
+			)
+    </insert>
+    
+    <update id="updateMenuAuthGroup" parameterType="kr.co.igns.framework.comm.model.AuthMenuVO">
+    	update TB_MENU_AUTH_GRP
+			set BASIC_ACLC 			= #{basicAclc}
+				,BASIC_ACLR			= #{basicAclr}
+				,BASIC_ACLU			= #{basicAclu}
+				,BASIC_ACLD			= #{basicAcld}
+				,update_id			= #{updateId}
+				,update_dt			= NOW()
+			where DOMAIN_CD 	= #{domainCd}
+			  and AUTHGRP_CD 	= #{authgrpCd}
+			  and MENU_CD 		= #{menuCd} 
+    </update>
+    
+    <delete id="deleteMenuAuthGroup" parameterType="kr.co.igns.framework.comm.model.AuthMenuVO">
+    	delete from TB_MENU_AUTH_GRP 
+    	where DOMAIN_CD 	= #{domainCd}
+		  and AUTHGRP_CD 	= #{authgrpCd}
+		  and MENU_CD 		= #{menuCd} 
+    </delete>
+    
+    
+    
+        <!-- 계정별 메뉴권한 검색 조건   -->    
+    <sql id="searchMenuUser">
+    	<if test='domainCd != null and !domainCd.equals("")'>
+			AND A.DOMAIN_CD = #{domainCd}
+		</if>
+		<if test='userId != null and !userId.equals("")'>
+			AND A.user_id = #{userId}
+		</if>
+		<if test='userNm != null and !userNm.equals("")'>
+			AND B.user_Nm = #{userNm}
+		</if>
+	</sql>
+	
+    
+    <!-- 계정별 메뉴권한 조회 -->
+    <select id="getMenuUserAuth" parameterType="kr.co.igns.framework.comm.model.AuthReqDto" 
+    					resultType="kr.co.igns.framework.comm.model.AuthMenuUserVO">
+        select a.*, b.user_nm , d.menu_nm, d.menu_url
+		from TB_MENU_USER_AUTH a
+			inner join tb_user_info b on a.user_id = b.user_id and a.domain_cd = b.domain_cd
+			left join tb_menu_info d on a.menu_cd = d.menu_cd and a.domain_cd = d.domain_cd
+		where 1=1
+			<include refid="searchMenuUser" />
+    </select>
+    
+    <!-- 계정별 메뉴권한 입력 -->
+    <insert id="createMenuUserAuth" parameterType="kr.co.igns.framework.comm.model.AuthMenuUserVO">
+    	INSERT INTO TB_MENU_USER_AUTH
+			(DOMAIN_CD
+			, USER_ID
+			, MENU_CD
+			, BASIC_ACLC
+			, BASIC_ACLR
+			, BASIC_ACLU
+			, BASIC_ACLD
+			, insert_id
+			, insert_dt
+			)
+		VALUES(
+			#{domainCd}
+			, #{userId}
+			, #{menuCd}
+			, #{basicAclc}
+			, #{basicAclr}
+			, #{basicAclu}
+			, #{basicAcld}
+			, #{insertId}
+			, NOW()
+			)
+    </insert>
+    
+    <update id="updateMenuUserAuth" parameterType="kr.co.igns.framework.comm.model.AuthMenuUserVO">
+    	update TB_MENU_USER_AUTH
+			set BASIC_ACLC 			= #{basicAclc}
+				,BASIC_ACLR			= #{basicAclr}
+				,BASIC_ACLU			= #{basicAclu}
+				,BASIC_ACLD			= #{basicAcld}
+				,update_id			= #{updateId}
+				,update_dt			= NOW()
+			where DOMAIN_CD 	= #{domainCd}
+			  and USER_ID	 	= #{userId}
+			  and MENU_CD 		= #{menuCd} 
+    </update>
+    
+    <delete id="deleteMenuUserAuth" parameterType="kr.co.igns.framework.comm.model.AuthMenuUserVO">
+    	delete from TB_MENU_USER_AUTH 
+    	where DOMAIN_CD 	= #{domainCd}
+		  and USER_ID 		= #{userId}
+		  and MENU_CD 		= #{menuCd} 
+    </delete>
+    
+</mapper>

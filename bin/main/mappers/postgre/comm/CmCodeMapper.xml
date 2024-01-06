@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="kr.co.igns.framework.comm.dao.postgre.CmCodeDao">
+        
+    <!-- 공통코드 검색 조건   -->    
+    <sql id="searchAll">
+		<if test='codeCd != null and !codeCd.equals("")'>
+			AND A.CODE_CD LIKE '%' || #{codeCd} || '%'
+		</if>
+		<if test='codeNm != null and !codeNm.equals("")'>
+			AND A.CODE_NM LIKE '%' || #{codeNm} || '%'
+		</if>
+	</sql>
+	
+    <sql id="search">
+		<if test='codeCd != null and !codeCd.equals("")'>
+			AND A.CODE_CD LIKE '%' || #{codeCd} || '%'
+		</if>
+		<if test='codeNm != null and !codeNm.equals("")'>
+			AND A.CODE_NM LIKE '%' || #{codeNm} || '%'
+		</if>
+		<if test='level != null and !level.equals("")'>
+			AND A.LEVEL = #{level}
+		</if>
+		<if test='prntsCd != null and !prntsCd.equals("")'>
+			AND A.PRNTS_CD = #{prntsCd}
+		</if>
+	</sql>
+	
+	<!-- 부모공통코드 전체 조회 -->
+    <select id="getAllCmCode" parameterType="kr.co.igns.framework.comm.model.CmCodeReqDto" 
+    					resultType="kr.co.igns.framework.comm.model.CmCodeVO">
+        SELECT a.CODE_CD, a.CODE_NM, a.SORT, a.note
+		FROM tb_common_code a
+		WHERE a.DOMAIN_CD = #{domainCd}
+		  AND a.level = '0'
+		  AND a.USE_YN = 'Y'
+		  <include refid="searchAll" />
+	    ORDER BY SORT
+    </select>
+        
+    <!-- 공통코드 조회 -->
+    <select id="getCmCode" parameterType="kr.co.igns.framework.comm.model.CmCodeReqDto" 
+    					resultType="kr.co.igns.framework.comm.model.CmCodeVO">
+        SELECT a.*
+		FROM tb_common_code a
+		WHERE a.DOMAIN_CD = #{domainCd}
+		  AND a.USE_YN = 'Y'
+		  <include refid="search" />
+		ORDER BY SORT
+    </select>
+    
+        <!-- 공통코드 조회 -->
+    <select id="getChildCmCodeList" parameterType="kr.co.igns.framework.comm.model.CmCodeReqDto" 
+    					resultType="kr.co.igns.framework.comm.model.CmChildCodeVO">
+		SELECT a.code_cd, a.code_nm
+		FROM tb_common_code a
+		WHERE a.DOMAIN_CD = #{domainCd}
+		  AND a.USE_YN = 'Y'
+		  AND a.LEVEL = '1'
+		  AND a.PRNTS_CD = #{codeCd}
+		ORDER BY SORT
+    </select>
+    
+    
+    <insert id="createCmCode" parameterType="kr.co.igns.framework.comm.model.CmCodeVO">
+    	INSERT INTO tb_common_code
+			(DOMAIN_CD
+			, CODE_CD
+			, CODE_NM
+			, LEVEL
+			, PRNTS_CD
+			, SORT
+			, DATA1
+			, DATA2
+			, DATA3
+			, DATA4
+			, DATA5
+			, NOTE
+			, USE_YN
+			, insert_id
+			, insert_dt
+			)
+		VALUES(
+			#{domainCd}
+			, #{codeCd}
+			, #{codeNm}
+			, #{level}
+			, #{prntsCd}
+			, #{sort}
+			, #{data1}
+			, #{data2}
+			, #{data3}
+			, #{data4}
+			, #{data5}
+			, #{note}
+			, #{useYn}
+			, #{insertId}
+			, NOW()
+			)
+    </insert>
+    
+    <update id="updateCmCode" parameterType="kr.co.igns.framework.comm.model.CmCodeVO">
+    	update tb_common_code
+			set CODE_NM 		= #{codeNm}
+				,PRNTS_CD	= #{prntsCd}
+				,SORT		= #{sort}
+				,DATA1		= #{data1}
+				,DATA2		= #{data2}
+				,DATA3 		= #{data3}
+				,DATA4		= #{data4}
+				,DATA5		= #{data5}
+				,NOTE		= #{note}
+				,USE_YN		= #{useYn}
+				,update_id	= #{updateId}
+				,update_dt	= NOW()
+			where DOMAIN_CD = #{domainCd}
+			  and LEVEL = #{level} 
+			  and CODE_CD = #{codeCd}
+				
+    </update>
+    
+    <delete id="deleteCmCode" parameterType="kr.co.igns.framework.comm.model.CmCodeVO">
+    	delete from tb_common_code 
+    	where domain_cd = #{domainCd} 
+		  and LEVEL = #{level}
+		  and CODE_CD = #{codeCd}
+    </delete>
+    
+    <delete id="deleteDetailCmCode" parameterType="kr.co.igns.framework.comm.model.CmCodeVO">
+    	delete from tb_common_code 
+    	where domain_cd = #{domainCd} 
+		  and LEVEL != #{level}
+		  and PRNTS_CD = #{codeCd}
+    </delete>
+    
+</mapper>

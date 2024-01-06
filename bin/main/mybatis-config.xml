@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>	
+	<settings>
+        <!-- http://www.mybatis.org/mybatis-3/ko/configuration.html -->
+        <setting name="cacheEnabled" value="false"/>			<!-- mybatis cache 사용여부 -->
+        <setting name="useGeneratedKeys" value="true"/>			<!-- 생성키에 대한 JDBC 지원 -->
+        <setting name="defaultExecutorType" value="REUSE"/>		<!-- 디폴트 Executor 설정 -->
+        <setting name="defaultStatementTimeout" value="25000"/>	<!-- db응답 타임아웃 설정 -->
+        <setting name="mapUnderscoreToCamelCase" value="true"/> <!-- db컬럼을 카멜 표기법으로 변경 -->
+        <setting name="jdbcTypeForNull" value="OTHER"/> 		<!-- parameter가 null인경우, jdbctype을 세팅 -->
+    </settings>
+</configuration>

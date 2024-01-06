@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="kr.co.igns.framework.comm.dao.postgre.AsgnDao">
+        
+	<!-- 조직코드 중복확인 -->
+	<select id="checkAsgnCd" parameterType="kr.co.igns.framework.comm.model.AsgnReqDto" 
+    					resultType="java.lang.Integer">
+        select count(*)
+		from TB_ASGN_INFO a
+		where a.DOMAIN_CD = #{domainCd}
+		  AND a.ASGN_CD = #{asgnCd}
+    </select>
+        
+    <!-- 조직코드 전체 조회 -->
+    <select id="getAsgn" parameterType="kr.co.igns.framework.comm.model.AsgnReqDto" 
+    					resultType="kr.co.igns.framework.comm.model.AsgnVO">
+        select a.*
+		from TB_ASGN_INFO a
+		where a.DOMAIN_CD = #{domainCd}
+		order by a.sort
+    </select>
+    
+    <insert id="createAsgn" parameterType="kr.co.igns.framework.comm.model.AsgnVO">
+    	INSERT INTO TB_ASGN_INFO
+			(DOMAIN_CD
+			, ASGN_CD
+			, ASGN_NM
+			, LEVEL
+			, PRNTS_CD
+			, SORT
+			, NOTE
+			, insert_id
+			, insert_dt
+			, ASGN_TYPE
+			)
+		VALUES(
+			#{domainCd}
+			, #{asgnCd}
+			, #{asgnNm}
+			, #{level}
+			, #{prntsCd}
+			, #{sort}
+			, #{note}
+			, #{insertId}
+			, NOW()
+			, #{asgnType}
+			)
+    </insert>
+    
+    <update id="updateAsgn" parameterType="kr.co.igns.framework.comm.model.AsgnVO">
+    	update TB_ASGN_INFO
+			set ASGN_NM 		= #{asgnNm}
+				,LEVEL		= #{level}
+				,PRNTS_CD	= #{prntsCd}
+				,SORT		= #{sort}
+				,NOTE		= #{note}
+				,ASGN_TYPE  = #{asgnType}
+				,update_id	= #{updateId}
+				,update_dt	= NOW()
+			where DOMAIN_CD = #{domainCd}
+			  and ASGN_CD = #{asgnCd} 
+    </update>
+    
+    <delete id="deleteAsgn" parameterType="kr.co.igns.framework.comm.model.AsgnVO">
+    	delete from TB_ASGN_INFO 
+    	where domain_cd = #{domainCd} 
+		  and ASGN_CD = #{asgnCd}
+    </delete>
+    
+    
+</mapper>

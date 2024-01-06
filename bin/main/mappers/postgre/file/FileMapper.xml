@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="kr.co.igns.framework.file.dao.postgre.FileDao">
+    
+    <!-- 파일 정보입력-->    
+	<insert id="createFile" parameterType="kr.co.igns.framework.file.model.FileVO">
+		INSERT INTO TB_FILE_INFO (
+			FILE_NM,
+			SAVE_NM,
+			TARGET_ID,
+			TARGET_TYPE,
+			FILE_TYPE,
+			FILE_EXTENSION,
+			FILE_SIZE,
+			DEL_YN,
+			FILE_DESC,
+			SORT,
+			INSERT_USER_ID,
+			INSERT_DATE
+		) VALUES (
+			#{fileNm},
+			#{saveNm},
+			#{targetId},
+			#{targetType},
+			#{fileType},
+			#{fileExtension},
+			#{fileSize},
+			#{delYn},
+			#{fileDesc},
+			#{sort},
+			#{insertUserId},
+			current_timestamp
+		)
+	</insert>
+	
+	<!-- 파일 카운트(fileNm)-->
+	<select id="getFileNmCount" parameterType="java.lang.String" resultType="java.lang.Integer">
+    	SELECT
+			COUNT(*)
+		FROM TB_FILE_INFO
+		WHERE FILE_NM LIKE '%'||#{fileName}||'%'
+    </select>
+    
+    <!-- 파일 카운트(ID)-->
+	<select id="getFileCount" parameterType="kr.co.igns.framework.utils.file.FileCommonDto" resultType="java.lang.Integer">
+    	SELECT COUNT(*)
+		FROM TB_FILE_INFO
+		WHERE FILE_ID = #{value}
+    </select>
+    
+    <!-- 조회 -->
+	<select id="getFile"  parameterType="kr.co.igns.framework.file.model.FileDto" resultType="kr.co.igns.framework.file.model.FileVO">
+		SELECT
+			FILE_ID,
+			TARGET_TYPE,
+			TARGET_ID,
+			FILE_NM,
+			SAVE_NM,
+			FILE_TYPE,
+			FILE_EXTENSION,
+			FILE_SIZE,
+			DEL_YN,
+			FILE_DESC,
+			SORT,
+			INSERT_USER_ID,
+			INSERT_DATE,
+			UPDATE_USER_ID,
+			UPDATE_DATE
+		FROM TB_FILE_INFO		
+		WHERE 1=1
+		<include refid="search" />
+	</select>
+    
+    <sql id="search">
+		<if test='fileId != 0'>
+			AND FILE_ID = #{fileId}
+		</if>
+		<if test='fileId.equals(0)'>
+			AND TARGET_ID = #{targetId}
+			AND TARGET_TYPE = #{targetType}
+		</if>
+	</sql>
+	
+    	<!-- 파일경로 조회 -->
+	<select id="getFilePath" parameterType="java.lang.Integer" resultType="java.lang.String">
+		SELECT SAVE_NM
+		FROM TB_FILE_INFO
+		WHERE FILE_ID = #{fileId}
+	</select>	
+	
+	    <!-- 삭제 -->
+	<delete id="deleteFile" parameterType="java.lang.Integer">
+        DELETE FROM TB_FILE_INFO
+        WHERE FILE_ID = #{fileId}  		
+    </delete>    
+	
+	<!-- 한 건 조회 -->
+	<select id="getFileOne"  parameterType="kr.co.igns.framework.file.model.FileDto" resultType="kr.co.igns.framework.file.model.FileVO">
+		SELECT
+			FILE_ID,
+			TARGET_TYPE,
+			TARGET_ID,
+			FILE_NM,
+			SAVE_NM,
+			FILE_TYPE,
+			FILE_EXTENSION,
+			FILE_SIZE,
+			DEL_YN,
+			FILE_DESC,
+			SORT,
+			INSERT_USER_ID,
+			INSERT_DATE,
+			UPDATE_USER_ID,
+			UPDATE_DATE
+		FROM TB_FILE_INFO		
+		WHERE FILE_ID = #{fileId}
+	</select>
+</mapper>
