@@ -1,0 +1,177 @@
+[INFO ] 2021-09-13 10:41:27.631 [main][StartupInfoLogger.java] IgnsApplication - Starting IgnsApplication on DESKTOP-NCL2N9T with PID 13588 (F:\KaistProject\Source\backend\igns\build\libs\igns.jar started by beany in F:\kaistproject\source\backend\igns\build\libs)
+[INFO ] 2021-09-13 10:41:27.641 [main][SpringApplication.java] IgnsApplication - The following profiles are active: dev
+[INFO ] 2021-09-13 10:41:29.049 [main][RepositoryConfigurationDelegate.java] RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode!
+[INFO ] 2021-09-13 10:41:29.054 [main][RepositoryConfigurationDelegate.java] RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFERRED mode.
+[INFO ] 2021-09-13 10:41:29.092 [main][RepositoryConfigurationDelegate.java] RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 30ms. Found 0 JPA repository interfaces.
+[INFO ] 2021-09-13 10:41:29.105 [main][RepositoryConfigurationDelegate.java] RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode!
+[INFO ] 2021-09-13 10:41:29.107 [main][RepositoryConfigurationDelegate.java] RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+[INFO ] 2021-09-13 10:41:29.145 [main][RepositoryConfigurationDelegate.java] RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 9ms. Found 0 Redis repository interfaces.
+[INFO ] 2021-09-13 10:41:30.245 [main][TomcatWebServer.java] TomcatWebServer - Tomcat initialized with port(s): 9000 (http)
+[INFO ] 2021-09-13 10:41:30.255 [main][DirectJDKLog.java] Http11NioProtocol - Initializing ProtocolHandler ["http-nio-9000"]
+[INFO ] 2021-09-13 10:41:30.255 [main][DirectJDKLog.java] StandardService - Starting service [Tomcat]
+[INFO ] 2021-09-13 10:41:30.256 [main][DirectJDKLog.java] StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.37]
+[INFO ] 2021-09-13 10:41:30.723 [main][DirectJDKLog.java] TldScanner - At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+[INFO ] 2021-09-13 10:41:30.892 [main][DirectJDKLog.java] [/] - Initializing Spring embedded WebApplicationContext
+[INFO ] 2021-09-13 10:41:30.893 [main][ServletWebServerApplicationContext.java] ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 3202 ms
+[INFO ] 2021-09-13 10:41:31.599 [main][ExecutorConfigurationSupport.java] ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+[INFO ] 2021-09-13 10:41:31.616 [main][HikariDataSource.java] HikariDataSource - HikariPool-1 - Starting...
+[INFO ] 2021-09-13 10:41:31.740 [main][Log4j2SpyLogDelegator.java] log4j2 - 1. Connection opened. {executed in 94ms} 
+[INFO ] 2021-09-13 10:41:31.741 [main][Log4j2SpyLogDelegator.java] log4j2 - 1. Connection.new Connection returned 
+[INFO ] 2021-09-13 10:41:31.741 [main][PoolBase.java] PoolBase - HikariPool-1 - Driver does not support get/set network timeout for connections. (Method net/sf/log4jdbc/sql/jdbcapi/ConnectionSpy.getNetworkTimeout()I is abstract)
+[INFO ] 2021-09-13 10:41:31.741 [main][Log4j2SpyLogDelegator.java] log4j2 - 1. Connection.isReadOnly() returned false
+[INFO ] 2021-09-13 10:41:31.742 [main][Log4j2SpyLogDelegator.java] log4j2 - 1. Connection.getAutoCommit() returned true
+[INFO ] 2021-09-13 10:41:31.756 [main][Log4j2SpyLogDelegator.java] log4j2 - 1. Connection.isValid(1) returned true
+[INFO ] 2021-09-13 10:41:31.767 [main][Log4j2SpyLogDelegator.java] log4j2 - 1. Connection.getTransactionIsolation() returned 2
+[INFO ] 2021-09-13 10:41:31.770 [main][HikariDataSource.java] HikariDataSource - HikariPool-1 - Start completed.
+[INFO ] 2021-09-13 10:41:31.781 [main][Log4j2SpyLogDelegator.java] log4j2 - 1. Connection.getMetaData() returned org.postgresql.jdbc.PgDatabaseMetaData@1e7ab390
+[INFO ] 2021-09-13 10:41:31.788 [main][Log4j2SpyLogDelegator.java] log4j2 - 1. Connection.clearWarnings() returned 
+[INFO ] 2021-09-13 10:41:31.847 [task-1][LogHelper.java] LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+[INFO ] 2021-09-13 10:41:31.905 [HikariPool-1 connection adder][Log4j2SpyLogDelegator.java] log4j2 - 2. Connection opened. {executed in 20ms} 
+[INFO ] 2021-09-13 10:41:31.906 [HikariPool-1 connection adder][Log4j2SpyLogDelegator.java] log4j2 - 2. Connection.new Connection returned 
+[INFO ] 2021-09-13 10:41:31.906 [HikariPool-1 connection adder][Log4j2SpyLogDelegator.java] log4j2 - 2. Connection.isReadOnly() returned false
+[INFO ] 2021-09-13 10:41:31.907 [HikariPool-1 connection adder][Log4j2SpyLogDelegator.java] log4j2 - 2. Connection.getAutoCommit() returned true
+[INFO ] 2021-09-13 10:41:31.928 [HikariPool-1 connection adder][Log4j2SpyLogDelegator.java] log4j2 - 3. Connection opened. {executed in 21ms} 
+[INFO ] 2021-09-13 10:41:31.928 [HikariPool-1 connection adder][Log4j2SpyLogDelegator.java] log4j2 - 3. Connection.new Connection returned 
+[INFO ] 2021-09-13 10:41:31.929 [HikariPool-1 connection adder][Log4j2SpyLogDelegator.java] log4j2 - 3. Connection.isReadOnly() returned false
+[INFO ] 2021-09-13 10:41:31.930 [HikariPool-1 connection adder][Log4j2SpyLogDelegator.java] log4j2 - 3. Connection.getAutoCommit() returned true
+[INFO ] 2021-09-13 10:41:31.963 [task-1][Version.java] Version - HHH000412: Hibernate ORM core version 5.4.20.Final
+[INFO ] 2021-09-13 10:41:31.966 [HikariPool-1 connection adder][Log4j2SpyLogDelegator.java] log4j2 - 4. Connection opened. {executed in 35ms} 
+[INFO ] 2021-09-13 10:41:31.967 [HikariPool-1 connection adder][Log4j2SpyLogDelegator.java] log4j2 - 4. Connection.new Connection returned 
+[INFO ] 2021-09-13 10:41:31.967 [HikariPool-1 connection adder][Log4j2SpyLogDelegator.java] log4j2 - 4. Connection.isReadOnly() returned false
+[INFO ] 2021-09-13 10:41:31.967 [HikariPool-1 connection adder][Log4j2SpyLogDelegator.java] log4j2 - 4. Connection.getAutoCommit() returned true
+[INFO ] 2021-09-13 10:41:31.995 [HikariPool-1 connection adder][Log4j2SpyLogDelegator.java] log4j2 - 5. Connection opened. {executed in 27ms} 
+[INFO ] 2021-09-13 10:41:31.995 [HikariPool-1 connection adder][Log4j2SpyLogDelegator.java] log4j2 - 5. Connection.new Connection returned 
+[INFO ] 2021-09-13 10:41:31.996 [HikariPool-1 connection adder][Log4j2SpyLogDelegator.java] log4j2 - 5. Connection.isReadOnly() returned false
+[INFO ] 2021-09-13 10:41:31.996 [HikariPool-1 connection adder][Log4j2SpyLogDelegator.java] log4j2 - 5. Connection.getAutoCommit() returned true
+[INFO ] 2021-09-13 10:41:32.019 [HikariPool-1 connection adder][Log4j2SpyLogDelegator.java] log4j2 - 6. Connection opened. {executed in 23ms} 
+[INFO ] 2021-09-13 10:41:32.019 [HikariPool-1 connection adder][Log4j2SpyLogDelegator.java] log4j2 - 6. Connection.new Connection returned 
+[INFO ] 2021-09-13 10:41:32.020 [HikariPool-1 connection adder][Log4j2SpyLogDelegator.java] log4j2 - 6. Connection.isReadOnly() returned false
+[INFO ] 2021-09-13 10:41:32.020 [HikariPool-1 connection adder][Log4j2SpyLogDelegator.java] log4j2 - 6. Connection.getAutoCommit() returned true
+[INFO ] 2021-09-13 10:41:32.036 [HikariPool-1 connection adder][Log4j2SpyLogDelegator.java] log4j2 - 7. Connection opened. {executed in 16ms} 
+[INFO ] 2021-09-13 10:41:32.037 [HikariPool-1 connection adder][Log4j2SpyLogDelegator.java] log4j2 - 7. Connection.new Connection returned 
+[INFO ] 2021-09-13 10:41:32.037 [HikariPool-1 connection adder][Log4j2SpyLogDelegator.java] log4j2 - 7. Connection.isReadOnly() returned false
+[INFO ] 2021-09-13 10:41:32.037 [HikariPool-1 connection adder][Log4j2SpyLogDelegator.java] log4j2 - 7. Connection.getAutoCommit() returned true
+[INFO ] 2021-09-13 10:41:32.079 [HikariPool-1 connection adder][Log4j2SpyLogDelegator.java] log4j2 - 8. Connection opened. {executed in 42ms} 
+[INFO ] 2021-09-13 10:41:32.079 [HikariPool-1 connection adder][Log4j2SpyLogDelegator.java] log4j2 - 8. Connection.new Connection returned 
+[INFO ] 2021-09-13 10:41:32.080 [HikariPool-1 connection adder][Log4j2SpyLogDelegator.java] log4j2 - 8. Connection.isReadOnly() returned false
+[INFO ] 2021-09-13 10:41:32.080 [HikariPool-1 connection adder][Log4j2SpyLogDelegator.java] log4j2 - 8. Connection.getAutoCommit() returned true
+[INFO ] 2021-09-13 10:41:32.126 [HikariPool-1 connection adder][Log4j2SpyLogDelegator.java] log4j2 - 9. Connection opened. {executed in 45ms} 
+[INFO ] 2021-09-13 10:41:32.126 [HikariPool-1 connection adder][Log4j2SpyLogDelegator.java] log4j2 - 9. Connection.new Connection returned 
+[INFO ] 2021-09-13 10:41:32.127 [HikariPool-1 connection adder][Log4j2SpyLogDelegator.java] log4j2 - 9. Connection.isReadOnly() returned false
+[INFO ] 2021-09-13 10:41:32.127 [HikariPool-1 connection adder][Log4j2SpyLogDelegator.java] log4j2 - 9. Connection.getAutoCommit() returned true
+[INFO ] 2021-09-13 10:41:32.155 [HikariPool-1 connection adder][Log4j2SpyLogDelegator.java] log4j2 - 10. Connection opened. {executed in 27ms} 
+[INFO ] 2021-09-13 10:41:32.155 [HikariPool-1 connection adder][Log4j2SpyLogDelegator.java] log4j2 - 10. Connection.new Connection returned 
+[INFO ] 2021-09-13 10:41:32.155 [HikariPool-1 connection adder][Log4j2SpyLogDelegator.java] log4j2 - 10. Connection.isReadOnly() returned false
+[INFO ] 2021-09-13 10:41:32.156 [HikariPool-1 connection adder][Log4j2SpyLogDelegator.java] log4j2 - 10. Connection.getAutoCommit() returned true
+[INFO ] 2021-09-13 10:41:32.259 [task-1][JavaReflectionManager.java] Version - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+[INFO ] 2021-09-13 10:41:32.442 [task-1][Log4j2SpyLogDelegator.java] log4j2 - 1. Connection.isValid(5) returned true
+[INFO ] 2021-09-13 10:41:32.443 [task-1][Log4j2SpyLogDelegator.java] log4j2 - 1. Connection.getMetaData() returned org.postgresql.jdbc.PgDatabaseMetaData@1e7ab390
+[INFO ] 2021-09-13 10:41:32.444 [task-1][Log4j2SpyLogDelegator.java] log4j2 - 1. Connection.getMetaData() returned org.postgresql.jdbc.PgDatabaseMetaData@1e7ab390
+[INFO ] 2021-09-13 10:41:32.489 [task-1][Dialect.java] Dialect - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
+[INFO ] 2021-09-13 10:41:32.518 [task-1][Log4j2SpyLogDelegator.java] log4j2 - 1. Connection.getCatalog() returned postgres
+[WARN ] 2021-09-13 10:41:32.713 [main][JpaBaseConfiguration.java] JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+[INFO ] 2021-09-13 10:41:33.028 [main][webConfig.java] webConfig - WebMvcConfigurer...
+[INFO ] 2021-09-13 10:41:33.165 [main][EndpointLinksResolver.java] EndpointLinksResolver - Exposing 2 endpoint(s) beneath base path '/actuator'
+[INFO ] 2021-09-13 10:41:33.229 [main][DevConfiguration.java] DevConfiguration - ========================================= dev È¯°æ =========================================
+[INFO ] 2021-09-13 10:41:33.404 [main][DefaultSecurityFilterChain.java] DefaultSecurityFilterChain - Creating filter chain: Ant [pattern='/com'], []
+[INFO ] 2021-09-13 10:41:33.405 [main][DefaultSecurityFilterChain.java] DefaultSecurityFilterChain - Creating filter chain: Ant [pattern='/com/**'], []
+[INFO ] 2021-09-13 10:41:33.405 [main][DefaultSecurityFilterChain.java] DefaultSecurityFilterChain - Creating filter chain: Ant [pattern='/resources/**'], []
+[INFO ] 2021-09-13 10:41:33.405 [main][DefaultSecurityFilterChain.java] DefaultSecurityFilterChain - Creating filter chain: Ant [pattern='/axboot.config.js'], []
+[INFO ] 2021-09-13 10:41:33.406 [main][DefaultSecurityFilterChain.java] DefaultSecurityFilterChain - Creating filter chain: Ant [pattern='/assets/**'], []
+[INFO ] 2021-09-13 10:41:33.406 [main][DefaultSecurityFilterChain.java] DefaultSecurityFilterChain - Creating filter chain: Ant [pattern='/jsp/common/**'], []
+[INFO ] 2021-09-13 10:41:33.406 [main][DefaultSecurityFilterChain.java] DefaultSecurityFilterChain - Creating filter chain: Ant [pattern='/jsp/setup/**'], []
+[INFO ] 2021-09-13 10:41:33.406 [main][DefaultSecurityFilterChain.java] DefaultSecurityFilterChain - Creating filter chain: Ant [pattern='/v2/api-docs'], []
+[INFO ] 2021-09-13 10:41:33.406 [main][DefaultSecurityFilterChain.java] DefaultSecurityFilterChain - Creating filter chain: Ant [pattern='/swagger-resources/**'], []
+[INFO ] 2021-09-13 10:41:33.407 [main][DefaultSecurityFilterChain.java] DefaultSecurityFilterChain - Creating filter chain: Ant [pattern='/swagger-ui.html'], []
+[INFO ] 2021-09-13 10:41:33.407 [main][DefaultSecurityFilterChain.java] DefaultSecurityFilterChain - Creating filter chain: Ant [pattern='/webjars/**'], []
+[INFO ] 2021-09-13 10:41:33.407 [main][DefaultSecurityFilterChain.java] DefaultSecurityFilterChain - Creating filter chain: Ant [pattern='/swagger/**'], []
+[INFO ] 2021-09-13 10:41:33.407 [main][DefaultSecurityFilterChain.java] DefaultSecurityFilterChain - Creating filter chain: Ant [pattern='/api-docs/**'], []
+[INFO ] 2021-09-13 10:41:33.408 [main][DefaultSecurityFilterChain.java] DefaultSecurityFilterChain - Creating filter chain: Ant [pattern='/setup/**'], []
+[INFO ] 2021-09-13 10:41:33.408 [main][DefaultSecurityFilterChain.java] DefaultSecurityFilterChain - Creating filter chain: Ant [pattern='/h2-console/**'], []
+[INFO ] 2021-09-13 10:41:33.408 [main][DefaultSecurityFilterChain.java] DefaultSecurityFilterChain - Creating filter chain: Ant [pattern='/health'], []
+[INFO ] 2021-09-13 10:41:33.408 [main][DefaultSecurityFilterChain.java] DefaultSecurityFilterChain - Creating filter chain: Ant [pattern='/api/v1/aes/**'], []
+[INFO ] 2021-09-13 10:41:33.444 [main][DefaultSecurityFilterChain.java] DefaultSecurityFilterChain - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@2accaec2, org.springframework.security.web.context.SecurityContextPersistenceFilter@32d418a9, org.springframework.security.web.header.HeaderWriterFilter@1a01d7f0, org.springframework.security.web.authentication.logout.LogoutFilter@5eabff6b, kr.co.igns.framework.config.security.JwtAuthenticationFilter@3e39baf0, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@746c411c, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@45e6d1e0, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@83bb0f, org.springframework.security.web.session.SessionManagementFilter@71aaf151, org.springframework.security.web.access.ExceptionTranslationFilter@52ae997b, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@3332c7a5]
+[INFO ] 2021-09-13 10:41:33.465 [main][PropertySourcedRequestMappingHandlerMapping.java] PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+[INFO ] 2021-09-13 10:41:34.132 [task-1][Log4j2SpyLogDelegator.java] log4j2 - 1. Statement.new Statement returned 
+[INFO ] 2021-09-13 10:41:34.133 [task-1][Log4j2SpyLogDelegator.java] log4j2 - 1. Connection.createStatement() returned net.sf.log4jdbc.sql.jdbcapi.StatementSpy@47a75103
+[INFO ] 2021-09-13 10:41:34.142 [task-1][Log4j2SpyLogDelegator.java] log4j2 - 1. select * from information_schema.sequences  {executed in 9 ms}
+[INFO ] 2021-09-13 10:41:34.146 [task-1][Log4j2SpyLogDelegator.java] log4j2 - 1. ResultSet.new ResultSet returned 
+[INFO ] 2021-09-13 10:41:34.146 [task-1][Log4j2SpyLogDelegator.java] log4j2 - 1. Statement.executeQuery(select * from information_schema.sequences) returned net.sf.log4jdbc.sql.jdbcapi.ResultSetSpy@571d8fe6
+[INFO ] 2021-09-13 10:41:34.147 [task-1][Log4j2SpyLogDelegator.java] log4j2 - 1. ResultSet.next() returned true
+[INFO ] 2021-09-13 10:41:34.148 [task-1][Log4j2SpyLogDelegator.java] log4j2 - 1. ResultSet.getString(sequence_catalog) returned postgres
+[INFO ] 2021-09-13 10:41:34.149 [task-1][Log4j2SpyLogDelegator.java] log4j2 - 1. ResultSet.getString(sequence_schema) returned public
+[INFO ] 2021-09-13 10:41:34.150 [task-1][Log4j2SpyLogDelegator.java] log4j2 - 1. ResultSet.getString(sequence_name) returned file_sequence
+[INFO ] 2021-09-13 10:41:34.150 [task-1][Log4j2SpyLogDelegator.java] log4j2 - 1. ResultSet.getLong(start_value) returned 1
+[INFO ] 2021-09-13 10:41:34.150 [task-1][Log4j2SpyLogDelegator.java] log4j2 - 1. ResultSet.getLong(minimum_value) returned 1
+[INFO ] 2021-09-13 10:41:34.151 [task-1][Log4j2SpyLogDelegator.java] log4j2 - 1. ResultSet.getLong(maximum_value) returned 9223372036854775807
+[INFO ] 2021-09-13 10:41:34.151 [task-1][Log4j2SpyLogDelegator.java] log4j2 - 1. ResultSet.getLong(increment) returned 1
+[INFO ] 2021-09-13 10:41:34.151 [task-1][Log4j2SpyLogDelegator.java] log4j2 - 1. ResultSet.next() returned true
+[INFO ] 2021-09-13 10:41:34.151 [task-1][Log4j2SpyLogDelegator.java] log4j2 - 1. ResultSet.getString(sequence_catalog) returned postgres
+[INFO ] 2021-09-13 10:41:34.152 [task-1][Log4j2SpyLogDelegator.java] log4j2 - 1. ResultSet.getString(sequence_schema) returned public
+[INFO ] 2021-09-13 10:41:34.152 [task-1][Log4j2SpyLogDelegator.java] log4j2 - 1. ResultSet.getString(sequence_name) returned tb_mqtt_connect_hist_mqtt_his_cd
+[INFO ] 2021-09-13 10:41:34.152 [task-1][Log4j2SpyLogDelegator.java] log4j2 - 1. ResultSet.getLong(start_value) returned 1
+[INFO ] 2021-09-13 10:41:34.152 [task-1][Log4j2SpyLogDelegator.java] log4j2 - 1. ResultSet.getLong(minimum_value) returned 1
+[INFO ] 2021-09-13 10:41:34.153 [task-1][Log4j2SpyLogDelegator.java] log4j2 - 1. ResultSet.getLong(maximum_value) returned 9223372036854775807
+[INFO ] 2021-09-13 10:41:34.153 [task-1][Log4j2SpyLogDelegator.java] log4j2 - 1. ResultSet.getLong(increment) returned 1
+[INFO ] 2021-09-13 10:41:34.153 [task-1][Log4j2SpyLogDelegator.java] log4j2 - 1. ResultSet.next() returned true
+[INFO ] 2021-09-13 10:41:34.153 [task-1][Log4j2SpyLogDelegator.java] log4j2 - 1. ResultSet.getString(sequence_catalog) returned postgres
+[INFO ] 2021-09-13 10:41:34.153 [task-1][Log4j2SpyLogDelegator.java] log4j2 - 1. ResultSet.getString(sequence_schema) returned public
+[INFO ] 2021-09-13 10:41:34.154 [task-1][Log4j2SpyLogDelegator.java] log4j2 - 1. ResultSet.getString(sequence_name) returned tb_user_info_uuid_seq
+[INFO ] 2021-09-13 10:41:34.156 [task-1][Log4j2SpyLogDelegator.java] log4j2 - 1. ResultSet.getLong(start_value) returned 1
+[INFO ] 2021-09-13 10:41:34.156 [task-1][Log4j2SpyLogDelegator.java] log4j2 - 1. ResultSet.getLong(minimum_value) returned 1
+[INFO ] 2021-09-13 10:41:34.156 [task-1][Log4j2SpyLogDelegator.java] log4j2 - 1. ResultSet.getLong(maximum_value) returned 2147483647
+[INFO ] 2021-09-13 10:41:34.157 [task-1][Log4j2SpyLogDelegator.java] log4j2 - 1. ResultSet.getLong(increment) returned 1
+[INFO ] 2021-09-13 10:41:34.159 [task-1][Log4j2SpyLogDelegator.java] log4j2 - 
+|-----------------|----------------|---------------------------------|----------|------------------|------------------------|--------------|------------|--------------|--------------------|----------|-------------|
+|sequence_catalog |sequence_schema |sequence_name                    |data_type |numeric_precision |numeric_precision_radix |numeric_scale |start_value |minimum_value |maximum_value       |increment |cycle_option |
+|-----------------|----------------|---------------------------------|----------|------------------|------------------------|--------------|------------|--------------|--------------------|----------|-------------|
+|postgres         |public          |file_sequence                    |[unread]  |[unread]          |[unread]                |[unread]      |1           |1             |9223372036854775807 |1         |[unread]     |
+|postgres         |public          |tb_mqtt_connect_hist_mqtt_his_cd |[unread]  |[unread]          |[unread]                |[unread]      |1           |1             |9223372036854775807 |1         |[unread]     |
+|postgres         |public          |tb_user_info_uuid_seq            |[unread]  |[unread]          |[unread]                |[unread]      |1           |1             |2147483647          |1         |[unread]     |
+|-----------------|----------------|---------------------------------|----------|------------------|------------------------|--------------|------------|--------------|--------------------|----------|-------------|
+
+[INFO ] 2021-09-13 10:41:34.159 [task-1][Log4j2SpyLogDelegator.java] log4j2 - 1. ResultSet.next() returned false
+[INFO ] 2021-09-13 10:41:34.159 [task-1][Log4j2SpyLogDelegator.java] log4j2 - 1. ResultSet.close() returned void
+[INFO ] 2021-09-13 10:41:34.160 [task-1][Log4j2SpyLogDelegator.java] log4j2 - 1. Statement.close() returned 
+[INFO ] 2021-09-13 10:41:34.171 [task-1][Log4j2SpyLogDelegator.java] log4j2 - 1. Connection.getMetaData() returned org.postgresql.jdbc.PgDatabaseMetaData@1e7ab390
+[INFO ] 2021-09-13 10:41:34.171 [task-1][Log4j2SpyLogDelegator.java] log4j2 - 1. Connection.clearWarnings() returned 
+[INFO ] 2021-09-13 10:41:34.356 [task-1][JtaPlatformInitiator.java] JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[INFO ] 2021-09-13 10:41:34.366 [task-1][AbstractEntityManagerFactoryBean.java] LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+[INFO ] 2021-09-13 10:41:34.367 [task-2][Log4j2SpyLogDelegator.java] log4j2 - 1. Connection.getMetaData() returned org.postgresql.jdbc.PgDatabaseMetaData@1e7ab390
+[INFO ] 2021-09-13 10:41:34.367 [task-2][Log4j2SpyLogDelegator.java] log4j2 - 1. Connection.clearWarnings() returned 
+[INFO ] 2021-09-13 10:41:34.530 [main][DirectJDKLog.java] Http11NioProtocol - Starting ProtocolHandler ["http-nio-9000"]
+[INFO ] 2021-09-13 10:41:34.574 [main][TomcatWebServer.java] TomcatWebServer - Tomcat started on port(s): 9000 (http) with context path ''
+[INFO ] 2021-09-13 10:41:34.575 [main][DocumentationPluginsBootstrapper.java] DocumentationPluginsBootstrapper - Context refreshed
+[INFO ] 2021-09-13 10:41:34.606 [main][DocumentationPluginsBootstrapper.java] DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
+[INFO ] 2021-09-13 10:41:34.662 [main][ApiListingReferenceScanner.java] ApiListingReferenceScanner - Scanning for api listing references
+[INFO ] 2021-09-13 10:41:34.988 [main][DeferredRepositoryInitializationListener.java] DeferredRepositoryInitializationListener - Triggering deferred initialization of Spring Data repositories¡¦
+[INFO ] 2021-09-13 10:41:34.989 [main][DeferredRepositoryInitializationListener.java] DeferredRepositoryInitializationListener - Spring Data repositories initialized!
+[INFO ] 2021-09-13 10:41:35.003 [main][ExecutorConfigurationSupport.java] ThreadPoolTaskScheduler - Initializing ExecutorService
+[INFO ] 2021-09-13 10:41:35.011 [main][StartupInfoLogger.java] IgnsApplication - Started IgnsApplication in 7.997 seconds (JVM running for 9.109)
+[INFO ] 2021-09-13 10:41:58.300 [http-nio-9000-exec-2][DirectJDKLog.java] [/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[INFO ] 2021-09-13 10:41:58.303 [http-nio-9000-exec-2][FrameworkServlet.java] DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+[INFO ] 2021-09-13 10:41:58.309 [http-nio-9000-exec-2][FrameworkServlet.java] DispatcherServlet - Completed initialization in 6 ms
+[INFO ] 2021-09-13 10:42:30.612 [SpringContextShutdownHook][AbstractEntityManagerFactoryBean.java] LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+[INFO ] 2021-09-13 10:42:30.614 [SpringContextShutdownHook][ExecutorConfigurationSupport.java] ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'
+[INFO ] 2021-09-13 10:42:30.615 [SpringContextShutdownHook][HikariDataSource.java] HikariDataSource - HikariPool-1 - Shutdown initiated...
+[INFO ] 2021-09-13 10:42:30.617 [HikariPool-1 connection closer][Log4j2SpyLogDelegator.java] log4j2 - 1. Connection closed. {executed in 0ms} 
+[INFO ] 2021-09-13 10:42:30.617 [HikariPool-1 connection closer][Log4j2SpyLogDelegator.java] log4j2 - 1. Connection.close() returned 
+[INFO ] 2021-09-13 10:42:30.617 [HikariPool-1 connection closer][Log4j2SpyLogDelegator.java] log4j2 - 2. Connection closed. {executed in 0ms} 
+[INFO ] 2021-09-13 10:42:30.617 [HikariPool-1 connection closer][Log4j2SpyLogDelegator.java] log4j2 - 2. Connection.close() returned 
+[INFO ] 2021-09-13 10:42:30.618 [HikariPool-1 connection closer][Log4j2SpyLogDelegator.java] log4j2 - 3. Connection closed. {executed in 1ms} 
+[INFO ] 2021-09-13 10:42:30.619 [HikariPool-1 connection closer][Log4j2SpyLogDelegator.java] log4j2 - 3. Connection.close() returned 
+[INFO ] 2021-09-13 10:42:30.619 [HikariPool-1 connection closer][Log4j2SpyLogDelegator.java] log4j2 - 4. Connection closed. {executed in 0ms} 
+[INFO ] 2021-09-13 10:42:30.619 [HikariPool-1 connection closer][Log4j2SpyLogDelegator.java] log4j2 - 4. Connection.close() returned 
+[INFO ] 2021-09-13 10:42:30.619 [HikariPool-1 connection closer][Log4j2SpyLogDelegator.java] log4j2 - 5. Connection closed. {executed in 0ms} 
+[INFO ] 2021-09-13 10:42:30.620 [HikariPool-1 connection closer][Log4j2SpyLogDelegator.java] log4j2 - 5. Connection.close() returned 
+[INFO ] 2021-09-13 10:42:30.620 [HikariPool-1 connection closer][Log4j2SpyLogDelegator.java] log4j2 - 6. Connection closed. {executed in 0ms} 
+[INFO ] 2021-09-13 10:42:30.620 [HikariPool-1 connection closer][Log4j2SpyLogDelegator.java] log4j2 - 6. Connection.close() returned 
+[INFO ] 2021-09-13 10:42:30.620 [HikariPool-1 connection closer][Log4j2SpyLogDelegator.java] log4j2 - 7. Connection closed. {executed in 0ms} 
+[INFO ] 2021-09-13 10:42:30.621 [HikariPool-1 connection closer][Log4j2SpyLogDelegator.java] log4j2 - 7. Connection.close() returned 
+[INFO ] 2021-09-13 10:42:30.621 [HikariPool-1 connection closer][Log4j2SpyLogDelegator.java] log4j2 - 8. Connection closed. {executed in 0ms} 
+[INFO ] 2021-09-13 10:42:30.621 [HikariPool-1 connection closer][Log4j2SpyLogDelegator.java] log4j2 - 8. Connection.close() returned 
+[INFO ] 2021-09-13 10:42:30.621 [HikariPool-1 connection closer][Log4j2SpyLogDelegator.java] log4j2 - 9. Connection closed. {executed in 0ms} 
+[INFO ] 2021-09-13 10:42:30.621 [HikariPool-1 connection closer][Log4j2SpyLogDelegator.java] log4j2 - 9. Connection.close() returned 
+[INFO ] 2021-09-13 10:42:30.622 [HikariPool-1 connection closer][Log4j2SpyLogDelegator.java] log4j2 - 10. Connection closed. {executed in 0ms} 
+[INFO ] 2021-09-13 10:42:30.622 [HikariPool-1 connection closer][Log4j2SpyLogDelegator.java] log4j2 - 10. Connection.close() returned 
+[INFO ] 2021-09-13 10:42:30.622 [SpringContextShutdownHook][HikariDataSource.java] HikariDataSource - HikariPool-1 - Shutdown completed.

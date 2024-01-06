@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="kr.co.igns.framework.comm.dao.postgre.DomainDao">
+        
+    <!-- 도메인코드 검색 조건   -->    
+    <sql id="search">
+		<if test='domainStatusCd != null and !domainStatusCd.equals("")'>
+			AND A.DOMAIN_STATUS_CD = #{domainStatusCd}
+		</if>
+		<if test='domainCd != null and !domainCd.equals("")'>
+			AND A.DOMAIN_CD LIKE '%' || #{domainCd} || '%'
+		</if>
+		<if test='domainNm != null and !domainNm.equals("")'>
+			AND A.DOMAIN_NM LIKE '%' || #{domainNm} || '%'
+		</if>
+	</sql>
+	
+	<!-- 도메인코드 존재여부 확인   -->
+	<select id="checkDomainCd"  parameterType="java.lang.String" 
+						resultType="java.lang.Integer">
+		SELECT COUNT(*)
+		FROM TB_DOMAIN_INFO
+		WHERE 1=1
+			AND GROUP_CD  = #{domainCd}
+	</select>
+    
+	<!-- 도메인코드 조회   -->
+    <select id="getDomain" parameterType="kr.co.igns.framework.comm.model.DomainReqDto" 
+    					resultType="kr.co.igns.framework.comm.model.DomainVO">
+		select 	a.address || a.address_detail ||'('|| a.address_ref||')' as addressFull,
+				a.*,
+				b.code_nm as domain_status_nm
+        from tb_domain_info a 
+        inner join tb_common_code b on a.domain_status_cd = b.code_cd 
+        where 1=1
+        	<include refid="search" />
+        order by A.DOMAIN_NM
+    </select>
+    
+    <!-- 도메인코드 조회   -->
+    <select id="getAllDomain" parameterType="kr.co.igns.framework.comm.model.DomainReqDto" 
+    					resultType="kr.co.igns.framework.comm.model.DomainVO">
+        SELECT A.DOMAIN_CD, A.DOMAIN_NM 
+        FROM TB_DOMAIN_INFO A 
+        WHERE 1=1
+        	<include refid="search" />
+        order by A.DOMAIN_NM
+    </select>
+    
+       <!-- 서브 도메인코드 조회   -->
+    <select id="getSubDomain" parameterType="kr.co.igns.framework.comm.model.DomainReqDto" 
+    					resultType="kr.co.igns.framework.comm.model.DomainVO">
+        select * 
+		from tb_domain_info a
+			inner join tb_user_info b on a.domain_cd = b.domain_cd
+		where a.prnts_cd = #{domainCd}
+			<if test='userId != null and !userId.equals("")'>
+			and b.user_id = #{userId}
+			</if>
+    </select>
+    
+    <!-- 도메인코드 입력   -->
+	<insert id="createDomainCd" parameterType="kr.co.igns.framework.comm.model.DomainVO" useGeneratedKeys="false">
+		INSERT INTO TB_DOMAIN_INFO
+			( DOMAIN_CD
+			  , DOMAIN_STATUS_CD
+			  , DOMAIN_NM
+			  , COMPANY_NM
+			  , CORRORATE_REG_NO
+			  , OWNER_NM
+			  , ADDRESS
+	   	   	  , ADDRESS_DETAIL
+	   	      , ADDRESS_REF
+	   	      , POST_CODE
+			  , PHONE
+			  , FAX
+			  , EMAIL
+			  , SERVICE_START_DT
+			  , SERVICE_END_DT
+			  , NOTE
+			  , INSERT_ID
+			  , INSERT_DT
+			)
+		VALUES 
+			( #{domainCd}
+			  , #{domainStatusCd}
+			  , #{domainNm}
+			  , #{companyNm}
+			  , #{corrorateRegNo}
+			  , #{ownerNm}
+			  , #{address}
+			  , #{addressDetail}
+			  , #{addressRef}
+			  , #{postCode}
+			  , #{phone}
+			  , #{fax}
+			  , #{email}
+			  , #{serviceStartDt}
+			  , #{serviceEndDt}
+			  , #{note}
+			  , #{insertId}
+			  , NOW()
+			)
+	</insert>
+	
+	<!-- 도메인코드 수정  -->
+	<update id="updateDomainCd" parameterType="kr.co.igns.framework.comm.model.DomainVO" useGeneratedKeys="false">
+	UPDATE TB_DOMAIN_INFO
+	   SET DOMAIN_STATUS_CD = #{domainStatusCd},
+	   	   DOMAIN_NM      	= #{domainNm},
+	   	   COMPANY_NM		= #{companyNm},
+	   	   CORRORATE_REG_NO	= #{corrorateRegNo},
+	   	   OWNER_NM			= #{ownerNm},
+	   	   ADDRESS			= #{address},
+	   	   ADDRESS_DETAIL	= #{addressDetail},
+	   	   ADDRESS_REF		= #{addressRef},
+	   	   POST_CODE		= #{postCode},
+	   	   PHONE			= #{phone},
+	   	   FAX				= #{fax},
+	   	   EMAIL			= #{email},
+	   	   SERVICE_START_DT	= #{serviceStartDt},
+	   	   SERVICE_END_DT	= #{serviceEndDt},
+	   	   NOTE				= #{note},
+	   	   UPDATE_ID		= #{updateId},
+	   	   UPDATE_DT		= NOW()
+	 WHERE DOMAIN_CD        = #{domainCd}
+	</update>
+    
+    <!-- 도메인코드 삭제 -->
+    <delete id="deleteDomain" parameterType="kr.co.igns.framework.comm.model.DomainVO">
+		DELETE FROM TB_DOMAIN_INFO
+	     WHERE DOMAIN_CD	= #{domainCd}
+	</delete>
+    
+</mapper>

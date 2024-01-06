@@ -1,0 +1,381 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="kr.co.igns.iotMonitoring.dao.postgre.DeviceDAO">
+    
+    <select id="selectAllGroups" 
+  						resultType="kr.co.igns.iotMonitoring.model.DeviceGroupVO">
+	    select grp.device_grp_id, 
+		       grp.device_grp_nm,
+		       grp.description, 
+		       (select count(*) from tb_device_ma dev  where dev.device_grp_id  = grp.device_grp_id) devCnt,
+		       (select count(*) from tb_device_ma dev  where dev.device_grp_id  = grp.device_grp_id and upper(dev.dash_use_yn) = 'Y') devCntForDash,
+		       grp.dash_use_yn, 
+		       grp.use_yn, 
+		       grp.insert_dt, 
+		       grp.insert_id, 
+		       grp.update_dt, 
+		       grp.update_id 
+		   from tb_device_grp grp
+		   where 1=1
+		   order by device_grp_nm
+
+    </select>
+    
+    <select id="selectDeviceGroup" parameterType="java.lang.String"
+  						resultType="kr.co.igns.iotMonitoring.model.DeviceGroupVO">
+	    select grp.device_grp_id, 
+		       grp.device_grp_nm,
+		       grp.description, 
+		       (select count(*) from tb_device_ma dev  where dev.device_grp_id  = grp.device_grp_id) devCnt,
+		       (select count(*) from tb_device_ma dev  where dev.device_grp_id  = grp.device_grp_id and upper(dev.dash_use_yn) = 'Y') devCntForDash,
+		       grp.dash_use_yn, 
+		       grp.use_yn, 
+		       grp.insert_dt, 
+		       grp.insert_id, 
+		       grp.update_dt, 
+		       grp.update_id 
+		   from tb_device_grp grp 
+		   where upper(grp.device_grp_id) =  #{deviceGroup} 
+		   order by device_grp_nm
+    </select>
+        
+    <select id="selectAllDevices" 
+  						resultType="kr.co.igns.iotMonitoring.model.DeviceVO">
+	SELECT dev.device_id,
+	dev.device_unique_id,
+    dev.dash_use_yn,
+	dev.device_grp_id,
+	grp.device_grp_nm,
+	grp.dash_use_yn as grpDashUseYN,
+	dev.device_type,
+	dev.device_nm,
+	dev.device_timeout,
+	dev.description,
+	dev.topic,
+	dev.api_use_yn,
+	dev.sub_use_yn,
+	dev.insert_dt,
+	dev.insert_id,
+	dev.update_dt,
+	dev.update_id
+	FROM tb_device_ma as dev,
+	tb_device_grp as grp
+	where dev.device_grp_id = grp.device_grp_id
+
+    </select>  
+        
+        
+      <select id="selectDevice" parameterType="kr.co.igns.iotMonitoring.model.DeviceVO"
+  						resultType="kr.co.igns.iotMonitoring.model.DeviceVO">
+		SELECT dev.device_id, 
+		       dev.device_unique_id, 
+		       dev.dash_use_yn,
+		       dev.device_grp_id, 
+		       grp.device_grp_nm,
+		       grp.dash_use_yn as grpDashUseYN,
+		       dev.device_type, 
+		       dev.device_nm, 
+		       dev.device_timeout, 
+		       dev.description, 
+		       dev.topic, 
+		       dev.api_use_yn, 
+		       dev.sub_use_yn, 
+		       dev.insert_dt, 
+		       dev.insert_id, 
+		       dev.update_dt, 
+		       dev.update_id
+		FROM tb_device_ma as dev,
+		     tb_device_grp as grp
+		where dev.device_grp_id = grp.device_grp_id
+	      and upper(dev.device_grp_id) = #{deviceGrpId} 
+		  and upper(dev.device_id) = #{deviceId} 		
+		  
+    </select>
+    
+     <select id="selectDevicebyCond" parameterType="kr.co.igns.iotMonitoring.model.DeviceVO"
+  						resultType="kr.co.igns.iotMonitoring.model.DeviceVO">
+		SELECT dev.device_id, 
+		       dev.device_unique_id, 
+		       dev.dash_use_yn,
+		       dev.device_grp_id, 
+		       grp.device_grp_nm,
+		       grp.dash_use_yn as grpDashUseYN,
+		       dev.device_type, 
+		       dev.device_nm, 
+		       dev.device_timeout, 
+		       dev.description, 
+		       dev.topic, 
+		       dev.api_use_yn, 
+		       dev.sub_use_yn, 
+		       dev.insert_dt, 
+		       dev.insert_id, 
+		       dev.update_dt, 
+		       dev.update_id
+		FROM tb_device_ma as dev,
+		     tb_device_grp as grp
+		where dev.device_grp_id = grp.device_grp_id
+		<if test='deviceGrpId != null and !deviceGrpId.equals("")'>
+	      and upper(dev.device_grp_id) = #{deviceGrpId} 
+	    </if>  
+	    <if test='deviceId != null and !deviceId.equals("")'>
+		  and upper(dev.device_id) = #{deviceId} 
+		</if>  
+		  
+    </select>
+    
+    
+    <select id="selectGroupDevices" parameterType="java.lang.String"
+  						resultType="kr.co.igns.iotMonitoring.model.DeviceVO">
+		SELECT dev.device_id, 
+		       dev.device_unique_id, 
+		       dev.dash_use_yn,
+		       dev.device_grp_id, 
+		       grp.device_grp_nm,
+		       grp.dash_use_yn as grpDashUseYN,
+		       dev.device_type, 
+		       dev.device_nm, 
+		       dev.device_timeout, 
+		       dev.description, 
+		       dev.topic, 
+		       dev.api_use_yn, 
+		       dev.sub_use_yn, 
+		       dev.insert_dt, 
+		       dev.insert_id, 
+		       dev.update_dt, 
+		       dev.update_id
+		FROM tb_device_ma as dev,
+		     tb_device_grp as grp
+		where dev.device_grp_id = grp.device_grp_id
+		  and upper(dev.device_grp_id) = #{group} 
+
+    </select>
+    
+    
+    <select id="selectUnscribeTopicsInGroup" 
+                   parameterType="java.util.ArrayList"
+  			       resultType="java.lang.String" > 	
+          
+        select F.topic 
+        from
+        (
+	        SELECT  dev.topic ,T.devCnt, COALESCE(D.delDevCnt,0) delDevCnt, T.devCnt - COALESCE(D.delDevCnt,0) as cnt
+			FROM (select topic 
+				  from tb_device_ma 
+				  where upper(device_grp_id) in 
+				   <foreach collection="list" item="groupid" index="index" open="(" close=")" separator=",">
+			         #{groupid}
+			      </foreach>
+				  group by topic)  as dev inner join 
+			      (select topic, count(*) as devCnt
+			       from tb_device_ma			  
+	               group by topic
+	              ) as T on dev.topic = T.topic
+	              left join 
+	              ( select topic, count(*) as delDevCnt
+			       from tb_device_ma	
+			       where 1=1
+			       and upper(device_grp_id) in 
+			       <foreach collection="list" item="groupid" index="index" open="(" close=")" separator=",">
+			         #{groupid}
+			       </foreach> 
+	               group by  topic
+	         ) as D on dev.topic = D.topic
+	          where 1=1
+	          
+		 ) F where F.cnt  <![CDATA[ <= ]]> 0
+
+
+    </select>
+    
+    <select id="selectUnscribeTopicOfDevice" 
+                   parameterType="java.util.ArrayList"
+  			       resultType="java.lang.String" > 	
+  	    				  
+		select F.topic 
+        from
+        (
+	        SELECT  dev.topic ,T.devCnt, COALESCE(D.delDevCnt,0) delDevCnt, T.devCnt - COALESCE(D.delDevCnt,0) as cnt
+			FROM (select topic 
+				  from tb_device_ma 
+				  where upper(device_unique_id) in 
+				  <foreach collection="list" item="uniqueId" index="index" open="(" close=")" separator=",">
+				    #{uniqueId}
+				  </foreach>
+				  group by topic)  as dev inner join 
+			      (select topic, count(*) as devCnt
+			       from tb_device_ma			  
+	               group by topic
+	              ) as T on dev.topic = T.topic
+	              left join 
+	              ( select topic, count(*) as delDevCnt
+			       from tb_device_ma	
+			       where 1=1
+			       and upper(device_unique_id) in 
+                  <foreach collection="list" item="uniqueId" index="index" open="(" close=")" separator=",">
+				    #{uniqueId}
+				  </foreach>
+	               group by topic
+	         ) as D on dev.topic = D.topic
+	          where 1=1
+	          
+		 ) F where F.cnt <![CDATA[ <=  ]]> 0
+
+    </select>
+    
+    
+        <select id="selectDevices" parameterType="java.lang.String"
+  						resultType="kr.co.igns.iotMonitoring.model.DeviceVO">
+		SELECT dev.device_id, 
+		       dev.device_unique_id, 
+		       dev.dash_use_yn,
+		       dev.device_grp_id, 
+		       grp.device_grp_nm,
+		       grp.dash_use_yn as grpDashUseYN,
+		       dev.device_type, 
+		       dev.device_nm, 
+		       dev.device_timeout, 
+		       dev.description, 
+		       dev.topic, 
+		       dev.api_use_yn, 
+		       dev.sub_use_yn, 
+		       dev.insert_dt, 
+		       dev.insert_id, 
+		       dev.update_dt, 
+		       dev.update_id
+		FROM tb_device_ma as dev,
+		     tb_device_grp as grp
+		where dev.device_grp_id = grp.device_grp_id
+		  and upper(dev.device_id) = #{deviceId} 
+    </select>
+    
+    <select id="selectDeviceByUniqueID" parameterType="java.lang.String"
+  						resultType="kr.co.igns.iotMonitoring.model.DeviceVO">
+		SELECT dev.device_id, 
+		       dev.device_unique_id, 
+		       dev.dash_use_yn,
+		       dev.device_grp_id, 
+		       grp.device_grp_nm,
+		       grp.dash_use_yn as grpDashUseYN,
+		       dev.device_type, 
+		       dev.device_nm, 
+		       dev.device_timeout, 
+		       dev.description, 
+		       dev.topic, 
+		       dev.api_use_yn, 
+		       dev.sub_use_yn, 
+		       dev.insert_dt, 
+		       dev.insert_id, 
+		       dev.update_dt, 
+		       dev.update_id
+		FROM tb_device_ma as dev,
+		     tb_device_grp as grp
+		where dev.device_grp_id  = grp.device_grp_id 
+		and   upper(dev.device_unique_id) like '%' || #{UniqueID} || '%' 
+    </select>
+    
+    
+    
+     <insert id="InsertGroup" parameterType="kr.co.igns.iotMonitoring.model.DeviceGroupVO" useGeneratedKeys="false">
+          
+		INSERT INTO tb_device_grp
+			(   device_grp_id
+			  , device_grp_nm
+			  , description
+			  , dash_use_yn
+			  , use_yn
+			  , insert_dt
+			  , insert_id
+			)
+		VALUES 
+			(   #{deviceGrpId}
+			  , #{deviceGrpNm}
+			  , #{description}
+			  , #{dashUseYN}
+			  , #{useYN}
+			  , now()
+			  , #{insertId}
+			)
+	</insert>
+	
+	<update id="UpdateGroup" parameterType="kr.co.igns.iotMonitoring.model.DeviceGroupVO" useGeneratedKeys="false">
+	UPDATE tb_device_grp
+	   SET device_grp_nm      = #{deviceGrpNm},
+	   	   description	      = #{description},
+	   	   dash_use_yn	      = #{dashUseYN},
+	   	   use_yn	          = #{useYN},
+	   	   update_dt          = now(),
+	   	   update_id          = #{updateId}
+	 WHERE upper(device_grp_id)      = #{deviceGrpId}
+	</update>
+    
+    <delete id="DeleteGroups" parameterType="kr.co.igns.iotMonitoring.model.DeviceGroupVO">
+		DELETE FROM tb_device_grp
+	     WHERE  upper(device_grp_id)    = #{deviceGrpId}
+	</delete>
+	
+	
+    <insert id="InsertDevice" parameterType="kr.co.igns.iotMonitoring.model.DeviceVO" useGeneratedKeys="false">
+    		INSERT INTO tb_device_ma
+			(   device_id
+			  , device_unique_id
+			  , device_grp_id
+			  , device_type
+			  , device_nm
+			  , device_timeout
+			  , description
+			  , topic
+			  , api_use_yn
+			  , sub_use_yn
+			  , insert_dt
+			  , insert_id
+			  , dash_use_yn
+			)
+		VALUES 
+			(   #{deviceId}
+			  , #{deviceUniqueId}
+			  , #{deviceGrpId}
+			  , #{deviceType}
+			  , #{deviceNm}
+			  , #{deviceTimeout}
+			  , #{description}
+			  , #{topic}
+			  , #{apiUseYN}
+			  , #{subUseYN}
+			  , now()
+			  , #{insertId}
+			  , #{dashUseYN}
+			)
+	</insert>
+	
+	<update id="UpdateDevice" parameterType="kr.co.igns.iotMonitoring.model.DeviceVO" useGeneratedKeys="false">
+	UPDATE tb_device_ma
+	   SET device_grp_id         = #{deviceGrpId},
+	   	   device_type	         = #{deviceType},
+	   	   device_nm             = #{deviceNm},
+	   	   device_timeout        = #{deviceTimeout},
+	   	   description	         = #{description},
+	   	   topic                 = #{topic},
+	   	   api_use_yn            = #{apiUseYN},
+	   	   sub_use_yn            = #{subUseYN},
+	   	   update_dt             = now(),
+	   	   update_id             = #{updateId},
+	   	   dash_use_yn           = #{dashUseYN}   	          
+	 WHERE upper(device_id)        	 = #{deviceId}
+	   and upper(device_unique_id)      = #{deviceUniqueId}
+	 
+	</update>
+    
+    <delete id="DeleteDevices" parameterType="kr.co.igns.iotMonitoring.model.DeviceVO">
+		DELETE FROM tb_device_ma
+	     WHERE upper(device_id)           = #{deviceId}
+	      and upper(device_unique_id)      = #{deviceUniqueId}
+	</delete>
+	
+	<delete id="DeleteAllDevicesInGroup" parameterType="java.lang.String">
+		DELETE FROM tb_device_ma
+	     WHERE 1=1
+	      and upper(device_grp_id)    = #{deviceGrpId}
+	</delete>
+    
+</mapper>
